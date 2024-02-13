@@ -8,7 +8,6 @@ public class HealthPickup : Pickup
 
     protected override void ActivatePickup()
     {
-        base.ActivatePickup();
         gm.UpdateHealth(healthValue);
     }
 }

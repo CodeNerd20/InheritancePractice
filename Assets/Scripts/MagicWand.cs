@@ -4,11 +4,25 @@ using UnityEngine;
 
 public class MagicWand : Tool
 {
+    public Transform spawner;
     public GameObject projectile;
-    public GameObject spawnPoint;
+    private GameManager gm;
+
+    private void Start()
+    {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
 
     public override void Activate()
     {
-        Instantiate(projectile, spawnPoint.transform.position, spawnPoint.transform.rotation);
+
+        Debug.Log("Magic Wand Activated");
+        if (gm.ammo > 0)
+        {
+            gm.UpdateAmmo(-1);
+            Instantiate(projectile, spawner.position, spawner.rotation);
+        }
+        
     }
 }
